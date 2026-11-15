@@ -30,7 +30,7 @@ export function ParentStudentsSection({ parentId }: { parentId: string }) {
         <h2 id="parent-students-title" className={styles.title}>
           {t('students.title')}
         </h2>
-        {meta && <span className={styles.count}>{t('students.total', { count: formatNumber(meta.total, language) })}</span>}
+        {meta && <span className={styles.count}>{t('students.total', { total: formatNumber(meta.total, language) })}</span>}
       </div>
 
       <div className={styles.filter} role="group" aria-label={t('students.filterLabel')}>

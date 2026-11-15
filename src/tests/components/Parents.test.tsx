@@ -64,7 +64,8 @@ describe('ParentsPage', () => {
   });
 
   it('shows a retryable error', async () => {
-    vi.mocked(parentsApi.list).mockRejectedValue(new ApiError('network'));
+    // A 403 is not retried by the query client (network/timeout/5xx are, with backoff), so the error state shows at once.
+    vi.mocked(parentsApi.list).mockRejectedValue(new ApiError('forbidden', { status: 403 }));
     renderAt('/school-manager/parents');
     expect(await screen.findByText('Parents could not be loaded')).toBeInTheDocument();
     expect(screen.getByRole('button', { name: 'Try again' })).toBeInTheDocument();

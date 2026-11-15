@@ -3,7 +3,7 @@
     "title": "Parents",
     "description": "Everyone linked to your school, newest first.",
     "add": "Add parent",
-    "total": "{{count}} in total",
+    "total": "{{total}} in total",
     "columns": {
       "parent": "Parent",
       "phone": "Phone",
@@ -58,7 +58,6 @@
     "registered": "Registered",
     "updated": "Last updated",
     "schools": "Linked schools",
-    "schoolsValue": "{{count}}",
     "editAddress": "Edit address",
     "endLink": "End link with this school",
     "endLinkHint": "Removes only this school's link. The parent and their account stay.",
@@ -73,7 +72,7 @@
   },
   "students": {
     "title": "Students",
-    "total": "{{count}} in total",
+    "total": "{{total}} in total",
     "filterLabel": "Show students by status",
     "all": "All",
     "emptyTitle": "No students for this parent",

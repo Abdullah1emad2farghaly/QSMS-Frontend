@@ -114,7 +114,7 @@ export default function ParentsPage() {
               <Pagination
                 page={meta.page}
                 totalPages={meta.totalPages}
-                totalLabel={t('list.total', { count: formatNumber(meta.total, language) })}
+                totalLabel={t('list.total', { total: formatNumber(meta.total, language) })}
                 busy={list.isFetching}
                 onChange={goTo}
               />
