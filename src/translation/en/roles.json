@@ -1,0 +1,27 @@
+{
+  "names": {
+    "MAIN_ADMIN": "Main Admin",
+    "ORGANIZATION_MANAGER": "Organization Manager",
+    "SCHOOL_MANAGER": "School Manager",
+    "TEACHER": "Teacher",
+    "PARENT": "Parent"
+  },
+  "switcher": {
+    "label": "Active role",
+    "choose": "Select a role",
+    "error": "The role could not be switched. Please try again."
+  },
+  "select": {
+    "title": "Choose your role",
+    "subtitle": "Your account has more than one role. Choose the one to use in this session.",
+    "activating": "Activating the role…",
+    "noneTitle": "No role is available yet",
+    "noneBody": "Your account has no role with a web interface yet. Please contact your administrator."
+  },
+  "landing": {
+    "welcome": "Welcome to the Quran Schools Management System",
+    "activated": "Role activated successfully: {{role}}",
+    "preparing": "The {{role}} interface is being prepared. This role's features will be added in the interface development stage.",
+    "switchHint": "You can switch to another role at any time."
+  }
+}

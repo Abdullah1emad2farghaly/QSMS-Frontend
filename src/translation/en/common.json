@@ -1,0 +1,94 @@
+{
+  "app": {
+    "title": "Quran School Management System"
+  },
+  "landing": {
+    "status": "QSMS is currently under development. The application foundation is being prepared, and system modules will be implemented progressively.",
+    "signIn": "Sign in",
+    "register": "Register",
+    "myDevices": "My devices"
+  },
+  "language": {
+    "label": "Language",
+    "switchTo": "العربية"
+  },
+  "theme": {
+    "label": "Theme",
+    "light": "Light",
+    "dark": "Dark",
+    "system": "System"
+  },
+  "notFound": {
+    "title": "Page not found",
+    "description": "The page you are looking for is not available.",
+    "backHome": "Back to home"
+  },
+  "nav": {
+    "menu": "Menu",
+    "label": "Main navigation",
+    "empty": "No navigation items yet.",
+    "myDevices": "My devices",
+    "changePassword": "Change password",
+    "home": "Home"
+  },
+  "drawer": {
+    "close": "Close"
+  },
+  "verify": {
+    "intro": "This temporary verification page confirms that the app starts and that routing, providers, language and direction, theme and the responsive layout all work.",
+    "ok": "Working",
+    "ready": "Ready",
+    "configured": "Configured",
+    "notConfigured": "Not configured",
+    "language": {
+      "title": "Language and direction",
+      "current": "Current language",
+      "direction": "Direction",
+      "names": {
+        "ar": "Arabic",
+        "en": "English"
+      },
+      "rtl": "Right-to-left (RTL)",
+      "ltr": "Left-to-right (LTR)"
+    },
+    "theme": {
+      "title": "Theme",
+      "preference": "Preference",
+      "applied": "Applied theme"
+    },
+    "viewport": {
+      "title": "Screen size",
+      "size": "Size",
+      "breakpoint": "Active breakpoint"
+    },
+    "runtime": {
+      "title": "Routing and providers",
+      "path": "Current path",
+      "router": "Router",
+      "i18n": "Internationalization",
+      "query": "TanStack Query",
+      "store": "Global state"
+    },
+    "api": {
+      "title": "API configuration",
+      "baseUrl": "Server address",
+      "timeout": "Timeout"
+    },
+    "breakpoints": {
+      "title": "Breakpoints",
+      "hint": "Resize the window to see the active breakpoint and the grid columns change."
+    },
+    "grid": {
+      "title": "Responsive grid",
+      "tile": "Item {{n}}"
+    }
+  },
+  "form": {
+    "optional": "(optional)",
+    "showPassword": "Show password",
+    "hidePassword": "Hide password"
+  },
+  "actions": {
+    "cancel": "Cancel"
+  }
+}

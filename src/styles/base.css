@@ -1,0 +1,49 @@
+body {
+  min-block-size: 100dvh;
+  overflow-wrap: break-word;
+  font-family: var(--font-sans);
+  font-size: var(--font-size-base);
+  line-height: var(--line-height-base);
+  background: var(--color-bg);
+  color: var(--color-text);
+}
+#root { min-block-size: 100dvh; }
+
+.muted { color: var(--color-text-muted); }
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-2);
+  min-block-size: var(--touch-target);
+  padding: var(--space-2) var(--space-4);
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-sm);
+  cursor: pointer;
+  text-decoration: none;
+}
+.btn:focus-visible { outline: 2px solid var(--color-primary); outline-offset: 2px; }
+.icon-btn { inline-size: var(--touch-target); padding: 0; }
+/* Hover styling is an enhancement only: nothing depends on hover. */
+@media (hover: hover) {
+  .btn:hover { background: var(--color-primary-soft); }
+}
+:focus-visible { outline: 2px solid var(--color-primary); outline-offset: 2px; }
+
+.center-screen {
+  margin: auto;
+  padding: var(--space-6);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-3);
+  text-align: center;
+}
+.loading-screen { min-block-size: 100dvh; }
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
+}

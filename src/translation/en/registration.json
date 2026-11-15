@@ -1,0 +1,122 @@
+{
+  "backToRegister": "Back to registration options",
+  "stepper": {
+    "label": "Progress",
+    "step": "Step {{current}} of {{total}}"
+  },
+  "steps": {
+    "applicant": "Applicant",
+    "organization": "Organization",
+    "details": "School details",
+    "location": "Location",
+    "review": "Review"
+  },
+  "actions": {
+    "back": "Back",
+    "next": "Next"
+  },
+  "select": {
+    "placeholder": "Select…",
+    "loading": "Loading…",
+    "empty": "No options are available right now.",
+    "retry": "Try again"
+  },
+  "landing": {
+    "title": "Register",
+    "subtitle": "Choose what you would like to register.",
+    "orgTitle": "Register an organization",
+    "orgBody": "Create an organization. You become its organization manager.",
+    "orgCta": "Register an organization",
+    "schoolTitle": "Submit a school",
+    "schoolBody": "Send a school to an existing organization. Its organization manager reviews the request.",
+    "schoolCta": "Submit a school",
+    "haveAccount": "Already have an account?",
+    "signIn": "Sign in"
+  },
+  "applicant": {
+    "name": "Full name",
+    "phone": "Phone number",
+    "password": "Password",
+    "passwordHint": "4 to 12 characters. It creates your account if you do not have one.",
+    "authenticatedNote": "You are signed in, so your account is used and no password is needed.",
+    "phoneLocked": "This is the phone number of your signed-in account."
+  },
+  "organization": {
+    "name": "Organization name",
+    "country": "Country",
+    "governorate": "Governorate",
+    "centerName": "Center or city",
+    "villageName": "Village",
+    "selectCountryFirst": "Select a country first."
+  },
+  "organizationSelector": {
+    "intro": "Choose the organization that will review your school.",
+    "label": "Organizations",
+    "loading": "Loading organizations",
+    "empty": "No organizations are available yet.",
+    "shown": "Showing {{shown}} of {{total}}",
+    "loadMore": "Load more",
+    "selected": "Selected:"
+  },
+  "schoolOrg": {
+    "organization": "Organization"
+  },
+  "school": {
+    "name": "School name",
+    "governorate": "Governorate",
+    "centerName": "Center or city",
+    "villageName": "Village",
+    "selectOrganizationFirst": "Select an organization first."
+  },
+  "gps": {
+    "why": "We need your school's exact location to register it. Your browser will ask for permission when you press the button.",
+    "limit": "The location must be accurate to {{meters}} meters or better. Coordinates cannot be typed in.",
+    "capture": "Capture my location",
+    "retry": "Try again",
+    "requesting": "Getting your location…",
+    "ok": "Location captured",
+    "tooInaccurate": "The location is not accurate enough",
+    "accuracy": "Accuracy: {{meters}} meters",
+    "accuracyLabel": "Accuracy",
+    "meters": "{{meters}} m",
+    "coordinates": "Coordinates",
+    "moveOutside": "Move to an open area and try again.",
+    "denied": "Location permission was denied. Allow location access for this site in your browser settings, then try again.",
+    "unavailable": "Your location could not be determined. Check that location services are on, then try again.",
+    "timeout": "Getting your location took too long. Try again, ideally outdoors.",
+    "unsupported": "This browser or connection does not support location. Use a modern browser over HTTPS."
+  },
+  "review": {
+    "hint": "Check your details before submitting.",
+    "edit": "Edit"
+  },
+  "status": {
+    "ACTIVE": "Active",
+    "PENDING": "Pending review",
+    "INACTIVE": "Inactive",
+    "REJECTED": "Rejected"
+  },
+  "orgPage": {
+    "title": "Register an organization",
+    "subtitle": "Tell us about yourself and your organization.",
+    "submit": "Register organization",
+    "successTitle": "Organization registered",
+    "successAnonymous": "Your organization was created. Sign in with your phone number and password to continue.",
+    "successSignedIn": "Your organization was created.",
+    "name": "Organization",
+    "code": "Code",
+    "status": "Status",
+    "continue": "Continue"
+  },
+  "schoolPage": {
+    "title": "Submit a school",
+    "subtitle": "Send your school to an organization for review.",
+    "submit": "Submit school",
+    "reviewNotice": "After you submit, the organization manager reviews the request. The school is not active until then.",
+    "successTitle": "School submitted",
+    "pendingExplain": "Your submission is pending. The organization manager must review it before the school becomes active.",
+    "name": "School",
+    "code": "Reference code",
+    "status": "Status"
+  }
+}

@@ -1,0 +1,39 @@
+{
+  "network": "Could not reach the server. Check your internet connection.",
+  "timeout": "The request timed out. Please try again.",
+  "cancelled": "The request was cancelled.",
+  "unauthorized": "Your session has expired or you are not signed in.",
+  "forbidden": "You do not have permission to perform this action.",
+  "not_found": "The requested item was not found.",
+  "validation": "Some of the submitted data is invalid.",
+  "server": "A server error occurred. Please try again later.",
+  "misconfigured": "The server connection is not configured.",
+  "unknown": "An unexpected error occurred.",
+  "boundary": {
+    "title": "Something went wrong",
+    "description": "This page could not be displayed. You can reload the application.",
+    "reload": "Reload"
+  },
+  "conflict": "The action could not be completed because of a conflict. Please try again.",
+  "payload_too_large": "The submitted data is too large.",
+  "business_rule": "This action is not allowed by the system rules.",
+  "rate_limited": "Too many requests. Please try again later.",
+  "reference": "Reference:",
+  "rateLimitedWait": "Too many attempts. Please wait {{count}} seconds before trying again.",
+  "codes": {
+    "INVALID_CREDENTIALS": "The phone number or password is incorrect.",
+    "SESSION_LIMIT_REACHED": "You are already signed in on the maximum of {{maxActiveSessions}} devices. Sign out of one of them (My devices), then try again.",
+    "ACCOUNT_INACTIVE": "This account is not active. Please contact your administrator.",
+    "ACCESS_TOKEN_INVALID": "Your session has ended. Please sign in again.",
+    "ACCESS_TOKEN_EXPIRED": "Your session has ended. Please sign in again.",
+    "SESSION_REVOKED": "Your session has ended. Please sign in again.",
+    "AUTHENTICATION_REQUIRED": "Please sign in to continue.",
+    "OTP_INVALID": "The code is incorrect, expired or already used. Check it and try again, or request a new code.",
+    "RESET_TOKEN_INVALID": "This reset step has expired or was already used. Please start the recovery process again.",
+    "INVALID_PASSWORD": "The password must be between 4 and 12 characters.",
+    "CURRENT_PASSWORD_INCORRECT": "The current password is incorrect.",
+    "NEW_PASSWORD_SAME_AS_CURRENT": "The new password must be different from the current password.",
+    "RATE_LIMITED": "Too many requests. Please try again later.",
+    "GPS_ACCURACY_EXCEEDS_LIMIT": "The location accuracy must be 20 meters or better. Capture your location again."
+  }
+}

@@ -1,0 +1,27 @@
+:root,
+:root[data-theme='light'] {
+  /* Warm ivory surfaces, deep emerald primary, sparing gold accent */
+  --color-bg: #f7f5ef;
+  --color-surface: #ffffff;
+  --color-surface-muted: #f1efe6;
+  --color-border: #e2dfd3;
+  --color-border-strong: #bfbaa6;
+  --color-text: #1c2a22;
+  --color-text-muted: #596860;
+  --color-primary: #1a6a49;
+  --color-primary-contrast: #ffffff;
+  --color-primary-soft: #e3f0e8;
+  --color-accent: #a8822f;
+  --color-danger: #b3261e;
+  --color-danger-contrast: #ffffff;
+  --color-danger-soft: #fbe9e7;
+  --color-success: #1e7a4c;
+  --color-success-soft: #e3f3ea;
+  --color-warning: #8a5a00;
+  --color-warning-soft: #fbf0d9;
+  --color-info: #1f5f8b;
+  --color-info-soft: #e5f0f8;
+  --color-overlay: rgb(15 23 19 / 0.5);
+  --shadow-sm: 0 1px 2px rgb(28 42 34 / 0.07);
+  --shadow-md: 0 8px 24px rgb(28 42 34 / 0.09);
+}

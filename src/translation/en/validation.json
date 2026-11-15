@@ -1,0 +1,11 @@
+{
+  "required": "This field is required",
+  "invalid": "Invalid value",
+  "invalidEmail": "Enter a valid email address",
+  "tooShort": "Must be at least {{count}} characters",
+  "tooLong": "Must be at most {{count}} characters",
+  "passwordMismatch": "Passwords do not match",
+  "passwordSame": "The new password must be different from the current one",
+  "gpsRequired": "Capture your location to continue",
+  "gpsAccuracy": "Location accuracy must be 20 meters or better"
+}
