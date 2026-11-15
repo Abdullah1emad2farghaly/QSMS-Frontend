@@ -1,0 +1,127 @@
+{
+  "list": {
+    "title": "Parents",
+    "description": "Everyone linked to your school, newest first.",
+    "add": "Add parent",
+    "total": "{{count}} in total",
+    "columns": {
+      "parent": "Parent",
+      "phone": "Phone",
+      "address": "Address",
+      "added": "Registered"
+    },
+    "listLabel": "Parents of your school",
+    "open": "Open {{name}}",
+    "emptyTitle": "No parents are linked to your school yet",
+    "emptyBody": "Register a parent to see their address and students here.",
+    "errorTitle": "Parents could not be loaded",
+    "retry": "Try again",
+    "refreshing": "Updating…",
+    "linkEnded": "{{name}} is no longer linked to your school. Their account and links to other schools were not changed.",
+    "dismiss": "Dismiss"
+  },
+  "pagination": {
+    "label": "Pagination",
+    "previous": "Previous",
+    "next": "Next",
+    "page": "Page {{page}} of {{total}}"
+  },
+  "school": {
+    "missingTitle": "No school is assigned to this session",
+    "missingBody": "This account is signed in as School Manager, but the system didn't report a school for it, so parents can't be shown. Nothing was loaded. Please contact your administrator."
+  },
+  "register": {
+    "title": "Add a parent",
+    "description": "Register a parent and link them to your school.",
+    "name": "Full name",
+    "nameHint": "Three names, for example: first, father and grandfather.",
+    "phone": "Phone number",
+    "phoneHint": "Used to find an existing account or create a new one.",
+    "address": "Address",
+    "addressHint": "Write it as Governorate / Center or city / Village. The governorate must match an active governorate exactly.",
+    "addressPlaceholder": "Minya / Samalut / Barmasha",
+    "submit": "Register parent",
+    "successTitle": "{{name}} is registered",
+    "successNewAccount": "A new login account was created for this phone number. The parent must change the initial password the first time they sign in.",
+    "successExistingAccount": "This phone number already had an account. The parent is now linked to your school and the account was left as it was.",
+    "viewParent": "View parent",
+    "addAnother": "Add another",
+    "close": "Close"
+  },
+  "details": {
+    "back": "All parents",
+    "loadError": "This parent could not be loaded",
+    "profile": "Profile",
+    "phone": "Phone",
+    "address": "Address",
+    "addressSince": "Current address since {{date}}",
+    "registered": "Registered",
+    "updated": "Last updated",
+    "schools": "Linked schools",
+    "schoolsValue": "{{count}}",
+    "editAddress": "Edit address",
+    "endLink": "End link with this school",
+    "endLinkHint": "Removes only this school's link. The parent and their account stay.",
+    "notLinked": "This parent is no longer linked to your school, so school actions are unavailable."
+  },
+  "address": {
+    "governorate": "Governorate",
+    "center": "Center or city",
+    "village": "Village",
+    "trail": "Address",
+    "notGiven": "Not given"
+  },
+  "students": {
+    "title": "Students",
+    "total": "{{count}} in total",
+    "filterLabel": "Show students by status",
+    "all": "All",
+    "emptyTitle": "No students for this parent",
+    "emptyBody": "Students registered under this parent will appear here.",
+    "emptyFilteredTitle": "No {{status}} students",
+    "emptyFilteredBody": "Try another status to see the rest.",
+    "errorTitle": "Students could not be loaded",
+    "joined": "Joined {{date}}",
+    "nationalId": "National ID",
+    "listLabel": "Students of this parent"
+  },
+  "status": {
+    "ACTIVE": "Active",
+    "INACTIVE": "Inactive",
+    "ARCHIVED": "Archived"
+  },
+  "editAddress": {
+    "title": "Edit address",
+    "description": "Correct the address on record. Name and phone can't be changed here, and the previous address is kept in the history.",
+    "field": "Address",
+    "save": "Save address",
+    "unchanged": "Change the address to enable saving.",
+    "saved": "Address updated."
+  },
+  "endLink": {
+    "dialogTitle": "End {{name}}'s link with this school?",
+    "intro": "This ends the relationship between the parent and your school only.",
+    "keeps": "What stays the same:",
+    "keep1": "The parent record and their login account",
+    "keep2": "Their links to other schools",
+    "keep3": "Their address history",
+    "blocked": "It can't be ended while the parent still has students in this school.",
+    "confirm": "End link"
+  },
+  "errors": {
+    "INVALID_PARENT_NAME": "Enter the parent's full name as exactly three names.",
+    "PARENT_ADDRESS_REQUIRED": "Enter the parent's address.",
+    "INVALID_PARENT_ADDRESS": "The address isn't in the expected format. Write it as Governorate / Center or city / Village.",
+    "PARENT_ADDRESS_GOVERNORATE_NOT_FOUND": "No governorate with this name was found. Write the governorate exactly as it is registered.",
+    "PARENT_ADDRESS_GOVERNORATE_INACTIVE": "This governorate is not active, so it can't be used in an address.",
+    "PARENT_ADDRESS_COUNTRY_MISMATCH": "This governorate belongs to a different country than your organization.",
+    "INVALID_PHONE_NUMBER": "The phone number isn't valid. Check it and try again.",
+    "PARENT_IDENTITY_CONFLICT": "This phone number belongs to an existing account whose details don't match this parent. Check the name and phone number.",
+    "PARENT_ACCOUNT_INACTIVE": "The account for this phone number is inactive, so the parent can't be added.",
+    "PARENT_ORGANIZATION_CONFLICT": "This parent is already registered under a different organization.",
+    "PARENT_ALREADY_LINKED_TO_SCHOOL": "This parent is already linked to your school.",
+    "PARENT_UPDATE_EMPTY": "There is nothing to update. Change the address first.",
+    "PARENT_HAS_STUDENTS_IN_SCHOOL": "The link can't be ended because this parent still has students in your school.",
+    "VALIDATION_FAILED": "Some of the entered data isn't valid. Check the highlighted fields."
+  }
+}

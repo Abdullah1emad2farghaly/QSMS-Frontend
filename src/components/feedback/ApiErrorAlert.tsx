@@ -3,10 +3,10 @@ import { Alert } from '@/components/ui/Alert';
 import { isApiError } from '@/services/api';
 import { getApiErrorMessage } from '@/utils/apiErrorMessage';
 
-/** Shows an API failure as a localized message plus the support reference. Never shows technical details. */
-export function ApiErrorAlert({ error, title }: { error: unknown; title?: string }) {
+/** Shows an API failure as a localized message plus the support reference. Never shows technical details. `message` lets a module supply its own text for the error. */
+export function ApiErrorAlert({ error, title, message: override }: { error: unknown; title?: string; message?: string }) {
   const { t } = useTranslation('errors');
-  const message = isApiError(error) ? getApiErrorMessage(error) : t('unknown');
+  const message = override ?? (isApiError(error) ? getApiErrorMessage(error) : t('unknown'));
   const requestId = isApiError(error) ? error.requestId : undefined;
   return (
     <Alert variant="error" title={title}>

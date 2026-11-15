@@ -18,10 +18,16 @@ const EXPECTED: Record<string, [string, string]> = {
   getOrganizations: ['GET', '/api/v1/organizations/lookup'],
   registerOrganization: ['POST', '/api/v1/organizations'],
   submitSchool: ['POST', '/api/v1/schools/submissions'],
+  listParents: ['GET', '/api/v1/parents/schools/{schoolId}'],
+  registerParent: ['POST', '/api/v1/parents'],
+  getParent: ['GET', '/api/v1/parents/{id}'],
+  updateParentAddress: ['PATCH', '/api/v1/parents/{id}'],
+  listParentStudents: ['GET', '/api/v1/students/parents/{parentId}'],
+  endParentSchoolLink: ['DELETE', '/api/v1/parents/{id}/schools/{schoolId}'],
 };
 
 describe('endpoint registry', () => {
-  it('documents exactly the 15 original endpoints plus switch-role, with the exact methods and paths', () => {
+  it('documents exactly the original endpoints, switch-role and the 6 parents endpoints, with the exact methods and paths', () => {
     expect(Object.keys(ENDPOINTS).sort()).toEqual(Object.keys(EXPECTED).sort());
     for (const [id, [method, path]] of Object.entries(EXPECTED)) {
       const def = ENDPOINTS[id as keyof typeof ENDPOINTS];

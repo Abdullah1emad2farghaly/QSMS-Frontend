@@ -1,0 +1,91 @@
+.ledger {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-sm);
+  overflow: clip;
+  min-inline-size: 0;
+  transition: opacity var(--duration-fast);
+}
+.ledger[aria-busy='true'] { opacity: 0.65; }
+.list { list-style: none; margin: 0; padding: 0; }
+.list > li + li { border-block-start: 1px solid var(--color-border); }
+
+/* Phones: one compact card per parent — seal, name, phone, address stacked. */
+.row {
+  position: relative;
+  display: grid;
+  grid-template-columns: 2.75rem minmax(0, 1fr) 1.25rem;
+  grid-template-areas: 'seal name chev' 'seal phone chev' 'seal address chev';
+  column-gap: var(--space-3);
+  row-gap: 0.125rem;
+  align-items: center;
+  padding: var(--space-3) var(--space-4);
+  min-block-size: var(--touch-target);
+  color: inherit;
+  text-decoration: none;
+}
+.row::before {
+  content: '';
+  position: absolute;
+  inset-block: 0;
+  inset-inline-start: 0;
+  inline-size: 3px;
+  background: var(--color-accent);
+  opacity: 0;
+  transition: opacity var(--duration-fast);
+}
+.row:focus-visible { outline: 2px solid var(--color-primary); outline-offset: -2px; }
+.row:focus-visible::before { opacity: 1; }
+@media (hover: hover) {
+  .row:hover { background: var(--color-primary-soft); }
+  .row:hover::before { opacity: 1; }
+}
+.seal { grid-area: seal; align-self: center; }
+.name { grid-area: name; font-weight: 600; overflow-wrap: anywhere; }
+.phone { grid-area: phone; color: var(--color-text-muted); font-size: var(--font-size-sm); font-variant-numeric: tabular-nums; }
+.address { grid-area: address; font-size: var(--font-size-sm); min-inline-size: 0; }
+.date { grid-area: date; display: none; color: var(--color-text-muted); font-size: var(--font-size-sm); }
+.chev { grid-area: chev; justify-self: end; color: var(--color-text-muted); display: grid; }
+:global([dir='rtl']) .chev { transform: scaleX(-1); }
+
+.head { display: none; }
+
+/* Tablets: name + phone on the left, address beside them. */
+@media (min-width: 48rem) {
+  .head, .row {
+    grid-template-columns: 2.75rem minmax(0, 1.3fr) minmax(0, 1.5fr) 1.25rem;
+    column-gap: var(--space-4);
+    padding-inline: var(--space-5);
+  }
+  .row { grid-template-areas: 'seal name address chev' 'seal phone address chev'; }
+  .head {
+    display: grid;
+    grid-template-areas: 'seal name address chev';
+    padding-block: var(--space-2);
+    background: var(--color-surface-muted);
+    border-block-end: 1px solid var(--color-border);
+    color: var(--color-text-muted);
+    font-size: var(--font-size-sm);
+    font-weight: 600;
+  }
+  .headName { grid-area: name; }
+  .headPhone, .headDate { display: none; }
+  .headAddress { grid-area: address; }
+  .address { font-size: var(--font-size-base); }
+}
+/* Laptops and up: a true ledger — phone and registration date get their own columns. */
+@media (min-width: 64rem) {
+  .head, .row { grid-template-columns: 2.75rem minmax(0, 1.5fr) minmax(0, 1fr) minmax(0, 1.8fr) minmax(0, 0.9fr) 1.25rem; }
+  .row { grid-template-areas: 'seal name phone address date chev'; }
+  .head { grid-template-areas: 'seal name phone address date chev'; }
+  .headPhone { display: block; grid-area: phone; }
+  .headDate { display: block; grid-area: date; }
+  .phone { font-size: var(--font-size-base); }
+  .date { display: block; }
+}
+
+/* Loading placeholder rows keep the same rhythm as real rows. */
+.skeletonRow { display: flex; align-items: center; gap: var(--space-3); padding: var(--space-3) var(--space-4); }
+.skeletonLines { flex: 1; min-inline-size: 0; display: grid; gap: var(--space-2); }
+.skeletonSeal { flex: none; inline-size: 2.75rem; block-size: 2.75rem; border-radius: 50%; }

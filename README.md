@@ -78,4 +78,15 @@ components, pages with 7 groups, translation ar/en, styles, assets, tests). Addi
 - Tests: `src/tests/{unit,components,e2e}`. The e2e suite checks horizontal overflow at 320–1920px in RTL/LTR and light/dark.
 - CORS note: for the browser to read `X-Request-Id` / `Retry-After` / `Content-Language` cross-origin, the backend must expose them
   (`Access-Control-Expose-Headers`) and allow the `Accept-Language` / `X-Request-Id` request headers.
-"# QSMS-Frontend" 
+
+## Parents Manager module (SCHOOL_MANAGER)
+
+Routes (active role `SCHOOL_MANAGER` only): `/school-manager/parents` (list + register sheet) and
+`/school-manager/parents/:parentId` (profile, address edit sheet, students, end school link).
+
+- Endpoints (registry `ENDPOINTS`): `listParents`, `registerParent`, `getParent`, `updateParentAddress`,
+  `listParentStudents`, `endParentSchoolLink`. Wrappers: `services/parents/parentsApi.ts`; hooks: `hooks/useParents.ts`.
+- Request `address` is a string; response `address` is an object (`ParentAddress`) — separate types in `types/parents.ts`.
+- Module-specific error wording lives in `translation/*/parents.json` (`errors.*`) and `utils/parentErrors.ts`.
+- Managed school id: read from `data.schoolId` of login / refresh / switch-role into `authStore.schoolId` (persisted with the session); `null` → the module sends no requests.
+- Not run in the authoring sandbox (no dependency install / network): `tsc`, `vite build`, Vitest, Playwright.

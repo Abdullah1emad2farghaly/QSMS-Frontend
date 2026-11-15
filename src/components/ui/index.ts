@@ -6,6 +6,7 @@ export { EmptyState } from './EmptyState';
 export { FormField, type FieldControlProps } from './FormField';
 export { PageHeading } from './PageHeading';
 export { PasswordInput } from './PasswordInput';
+export { Pagination } from './Pagination';
 export { Select } from './Select';
 export { Skeleton } from './Skeleton';
 export { SuccessPanel } from './SuccessPanel';

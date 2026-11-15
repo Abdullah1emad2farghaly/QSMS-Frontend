@@ -4,7 +4,7 @@ import { GuestRoute } from '@/app/guards/GuestRoute';
 import { ProtectedRoute } from '@/app/guards/ProtectedRoute';
 import { AppShellLayout } from '@/app/layouts/AppShellLayout';
 import { LANDING_ROLES } from '@/types';
-import { ROLE_ROUTES, ROUTES } from './paths';
+import { PARENTS_ROUTES, ROLE_ROUTES, ROUTES } from './paths';
 import { ROLE_HOME_PAGES } from './roleHomes';
 import type { RouteAccess } from './access';
 
@@ -48,6 +48,14 @@ const roleLandingRoutes: RouteObject[] = LANDING_ROLES.map((role) =>
   guardedRoutes({ roles: [role] }, [{ path: ROLE_ROUTES[role], lazy: lazyPage(ROLE_HOME_PAGES[role]) }]),
 );
 
+/** Parents Manager module: only the ACTIVE role SCHOOL_MANAGER opens these pages (the backend enforces scope). */
+const schoolManagerRoutes: RouteObject[] = [
+  guardedRoutes({ roles: ['SCHOOL_MANAGER'] }, [
+    { path: PARENTS_ROUTES.list, lazy: lazyPage(() => import('@/pages/school_managers/ParentsPage')) },
+    { path: PARENTS_ROUTES.details, lazy: lazyPage(() => import('@/pages/school_managers/ParentDetailsPage')) },
+  ]),
+];
+
 /** Signed-in screens of this module. Business modules add their own guarded groups next to it. */
 export const protectedRoutes: RouteObject[] = [
   guardedRoutes({}, [
@@ -56,6 +64,7 @@ export const protectedRoutes: RouteObject[] = [
     { path: ROUTES.selectRole, lazy: lazyPage(() => import('@/pages/auth/SelectRolePage')) },
   ]),
   ...roleLandingRoutes,
+  ...schoolManagerRoutes,
 ];
 
 export const notFoundRoute: RouteObject = {

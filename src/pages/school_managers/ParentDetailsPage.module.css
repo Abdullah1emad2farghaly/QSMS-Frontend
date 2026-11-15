@@ -1,0 +1,64 @@
+.page { display: grid; gap: var(--space-4); inline-size: 100%; max-inline-size: 72rem; margin-inline: auto; min-inline-size: 0; }
+@media (min-width: 48rem) { .page { gap: var(--space-5); } }
+.back { display: inline-flex; align-items: center; gap: var(--space-1); justify-self: start; min-block-size: var(--touch-target); }
+.backIcon { display: grid; }
+:global([dir='rtl']) .backIcon { transform: scaleX(-1); }
+
+.profile { display: flex; align-items: center; gap: var(--space-4); min-inline-size: 0; }
+.identity { min-inline-size: 0; }
+.name { font-size: var(--font-size-2xl); line-height: 1.25; overflow-wrap: anywhere; }
+.phone { color: var(--color-text-muted); font-size: var(--font-size-lg); font-variant-numeric: tabular-nums; }
+
+.layout { display: grid; gap: var(--space-5); grid-template-columns: minmax(0, 1fr); }
+.aside { display: grid; gap: var(--space-4); grid-template-columns: minmax(0, 1fr); min-inline-size: 0; }
+.cardHead { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: var(--space-2); margin-block-end: var(--space-3); }
+.cardTitle { font-size: var(--font-size-lg); }
+
+/* The address as a route: governorate → center → village, joined by a thin line. */
+.trail { list-style: none; margin: 0; padding: 0; display: grid; gap: var(--space-3); }
+.trail > li { position: relative; display: grid; padding-inline-start: var(--space-5); min-inline-size: 0; }
+.trail > li::before {
+  content: '';
+  position: absolute;
+  inset-inline-start: 0.2rem;
+  inset-block-start: 0.45rem;
+  inline-size: 0.6rem;
+  block-size: 0.6rem;
+  border-radius: 50%;
+  background: var(--color-surface);
+  border: 2px solid var(--color-accent);
+}
+.trail > li:not(:last-child)::after {
+  content: '';
+  position: absolute;
+  inset-inline-start: calc(0.2rem + 0.3rem - 1px);
+  inset-block-start: 1.25rem;
+  inset-block-end: calc(-1 * var(--space-3) + 0.3rem);
+  inline-size: 2px;
+  background: var(--color-border-strong);
+}
+.level { color: var(--color-text-muted); font-size: var(--font-size-sm); }
+.place { font-weight: 600; overflow-wrap: anywhere; }
+.since { margin-block-start: var(--space-3); color: var(--color-text-muted); font-size: var(--font-size-sm); }
+
+.facts { display: grid; gap: var(--space-3); margin: 0; }
+.fact { display: flex; flex-wrap: wrap; justify-content: space-between; gap: var(--space-1) var(--space-3); }
+.fact dt { color: var(--color-text-muted); }
+.fact dd { margin: 0; font-weight: 600; font-variant-numeric: tabular-nums; min-inline-size: 0; overflow-wrap: anywhere; }
+
+.endLink { display: grid; gap: var(--space-3); padding: var(--space-4); border: 1px solid var(--color-border); border-radius: var(--radius-lg); background: var(--color-surface-muted); }
+.endBtn { color: var(--color-danger); border-color: var(--color-danger); background: transparent; box-shadow: none; font-weight: 600; }
+@media (hover: hover) { .endBtn:hover:not([disabled]) { background: var(--color-danger-soft); } }
+.keeps { margin: 0; padding-inline-start: var(--space-5); display: grid; gap: var(--space-1); }
+
+@media (min-width: 48rem) {
+  .aside { grid-template-columns: repeat(2, minmax(0, 1fr)); align-items: start; }
+  .endLink { grid-column: 1 / -1; }
+  .profile { gap: var(--space-5); }
+}
+@media (min-width: 64rem) {
+  .layout { grid-template-columns: minmax(0, 21rem) minmax(0, 1fr); align-items: start; }
+  .aside { grid-template-columns: minmax(0, 1fr); position: sticky; inset-block-start: calc(var(--header-height) + var(--space-4)); }
+  .endLink { grid-column: auto; }
+}
+.skeletonBlock { display: grid; gap: var(--space-2); }

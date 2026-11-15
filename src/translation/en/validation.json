@@ -7,5 +7,6 @@
   "passwordMismatch": "Passwords do not match",
   "passwordSame": "The new password must be different from the current one",
   "gpsRequired": "Capture your location to continue",
-  "gpsAccuracy": "Location accuracy must be 20 meters or better"
+  "gpsAccuracy": "Location accuracy must be 20 meters or better",
+  "parentNameThreeParts": "Enter exactly three names"
 }

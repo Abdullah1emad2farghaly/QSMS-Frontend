@@ -5,5 +5,7 @@ export * from './endpoints';
 export * from './errorCodes';
 export * from './geography';
 export * from './organizations';
+export * from './parents';
 export * from './roles';
 export * from './schools';
+export * from './students';

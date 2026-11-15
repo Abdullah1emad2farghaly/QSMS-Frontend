@@ -33,3 +33,13 @@ export const ROLE_ROUTES: Record<LandingRole, string> = {
   TEACHER: '/teacher',
   PARENT: '/parent',
 };
+
+/** Parents Manager module (SCHOOL_MANAGER). Registration and address editing open as sheets on these pages. */
+export const PARENTS_ROUTES = {
+  list: '/school-manager/parents',
+  details: '/school-manager/parents/:parentId',
+} as const;
+
+export const PARENT_ROUTE_BUILDERS = {
+  details: (parentId: string): string => `/school-manager/parents/${encodeURIComponent(parentId)}`,
+} as const;

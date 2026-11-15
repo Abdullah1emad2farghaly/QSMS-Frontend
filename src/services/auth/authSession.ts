@@ -16,12 +16,14 @@ export function applySession(data: AuthSessionData): void {
     roles: data.roles,
     mustChangePassword: data.mustChangePassword,
     activeRole: data.activeRole ?? null,
+    schoolId: data.schoolId ?? null,
   });
   useAuthStore.getState().setSession({
     accessToken: data.accessToken,
     user: data.user,
     roles: data.roles,
     activeRole: data.activeRole ?? null,
+    schoolId: data.schoolId ?? null,
     mustChangePassword: data.mustChangePassword,
   });
 }
@@ -53,6 +55,13 @@ function applyRefreshed(data: Partial<AuthSessionData> & Pick<AuthSessionData, '
   } as AuthSessionData);
 }
 
+/** Stores the role and school of a switch-role answer in ONE update (no state mixes the new role with the old school). */
+function setRoleAndSchool(role: UserRole | null, schoolId: string | null): void {
+  useAuthStore.setState({ activeRole: role, schoolId });
+  const stored = readStoredSession();
+  if (stored) writeStoredSession({ ...stored, activeRole: role, schoolId });
+}
+
 /** Sets this session's active role in memory and in the session's own stored mirror. */
 export function setActiveRole(role: UserRole | null): void {
   useAuthStore.getState().setActiveRole(role);
@@ -75,7 +84,7 @@ export function applySwitchRoleResult(data: SwitchRoleData | null | undefined, r
   ) {
     applyRefreshed({ ...answer, accessToken: answer.accessToken, refreshToken: answer.refreshToken, refreshTokenExpiresAt: answer.refreshTokenExpiresAt, activeRole: confirmed });
   } else {
-    setActiveRole(confirmed);
+    setRoleAndSchool(confirmed, answer.schoolId ?? null);
   }
   return confirmed;
 }

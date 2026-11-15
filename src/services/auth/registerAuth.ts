@@ -52,6 +52,7 @@ export function registerAuthIntegration(): void {
       // Another tab of the same session changed the flag or switched the active role.
       if (stored.mustChangePassword !== store.mustChangePassword) store.setMustChangePassword(stored.mustChangePassword);
       if (stored.activeRole !== undefined && stored.activeRole !== store.activeRole) store.setActiveRole(stored.activeRole);
+      if (stored.schoolId !== undefined && stored.schoolId !== store.schoolId) store.setSchoolId(stored.schoolId);
     }
   });
 

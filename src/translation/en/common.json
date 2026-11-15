@@ -29,7 +29,8 @@
     "empty": "No navigation items yet.",
     "myDevices": "My devices",
     "changePassword": "Change password",
-    "home": "Home"
+    "home": "Home",
+    "parents": "Parents"
   },
   "drawer": {
     "close": "Close"
@@ -89,6 +90,7 @@
     "hidePassword": "Hide password"
   },
   "actions": {
-    "cancel": "Cancel"
+    "cancel": "Cancel",
+    "close": "Close"
   }
 }

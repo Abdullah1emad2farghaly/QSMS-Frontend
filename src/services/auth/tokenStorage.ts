@@ -20,6 +20,8 @@ export interface StoredSession {
    * does not lose it). Any value the backend sends wins; it is never a user-level setting.
    */
   activeRole?: UserRole | null;
+  /** Mirror of the `schoolId` the backend last reported for this session (same rule as `activeRole`). */
+  schoolId?: string | null;
 }
 
 const isStoredSession = (value: unknown): value is StoredSession => {

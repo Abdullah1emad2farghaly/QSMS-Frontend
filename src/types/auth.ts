@@ -67,6 +67,13 @@ export interface AuthSessionData {
    * names it `activeRole` (null = none chosen yet). Optional so older answers still type-check.
    */
   activeRole?: UserRole | null;
+  /**
+   * The school the account manages in this session (`data.schoolId`). A UUID when `activeRole` is
+   * SCHOOL_MANAGER and the backend identified the manager's school; `null` = no school assigned.
+   * Optional only so answers/fixtures that omit it (e.g. a refresh) still type-check: an absent value
+   * keeps the last one the backend reported, it is never derived or guessed.
+   */
+  schoolId?: Uuid | null;
 }
 
 /** UNVERIFIED request of `POST /auth/switch-role` (shape taken from the task description). */

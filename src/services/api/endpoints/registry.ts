@@ -1,11 +1,11 @@
 import type { ApiErrorCode, OperationId, UserRole } from '@/types';
 
 /**
- * Maintainable reference of the 15 documented endpoints (source of truth: the supplied QSMS
+ * Maintainable reference of the documented endpoints (source of truth: the supplied QSMS
  * OpenAPI contract). It carries metadata only — no request functions, no workflows. Feature
  * modules build calls from it with `buildEndpointRequest()`.
  */
-export type HttpMethod = 'GET' | 'POST' | 'DELETE';
+export type HttpMethod = 'GET' | 'POST' | 'PATCH' | 'DELETE';
 /** none = public; required = Bearer JWT required; optional = a token may be sent and, if sent, must be valid. */
 export type AuthMode = 'none' | 'required' | 'optional';
 export type DecisionStatus = 'NOT_APPLICABLE' | 'APPROVED' | 'PROVISIONAL';
@@ -62,6 +62,14 @@ const E403_INACTIVE_OR_PWD = { status: 403, codes: ['ACCOUNT_INACTIVE', 'PASSWOR
 const E413 = { status: 413, codes: ['PAYLOAD_TOO_LARGE'] } as const;
 const E429 = { status: 429, codes: ['RATE_LIMITED'] } as const;
 const E500 = { status: 500, codes: ['INTERNAL_ERROR'] } as const;
+
+const SCHOOL_MANAGER_AUTH: EndpointDefinition['authorization'] = {
+  roles: ['SCHOOL_MANAGER'],
+  scope: "The school(s) the caller actively manages (enforced by the backend).",
+  enforcement: 'Bearer JWT + SCHOOL_MANAGER role; school scope is checked server-side.',
+  permissionId: PERMISSION_DEFERRED,
+  decisionStatus: 'APPROVED',
+};
 
 export const ENDPOINTS: Readonly<Record<OperationId, EndpointDefinition>> = {
   login: {
@@ -523,6 +531,115 @@ export const ENDPOINTS: Readonly<Record<OperationId, EndpointDefinition>> = {
     notes: [
       'The school is created PENDING and grants nothing until the organization manager approves it.',
       'GPS accuracy must be 20 meters or better.',
+    ],
+  },
+  // ── Parents module (SCHOOL_MANAGER) ───────────────────────────────────────────────────────────
+  // Source: the parents contract supplied with the Parents Manager task. Its text documents the error
+  // CODES of each endpoint but not their HTTP statuses, so only the codes are listed (in `notes`) and
+  // no status is invented. Authorization (role + school scope) is enforced by the backend.
+  listParents: {
+    operationId: 'listParents',
+    method: 'GET',
+    path: '/api/v1/parents/schools/{schoolId}',
+    summary: "List the parents linked to a school (newest first)",
+    auth: 'required',
+    openApiSecurity: BEARER,
+    authorization: SCHOOL_MANAGER_AUTH,
+    successStatus: 200,
+    noStore: false,
+    hasRequestBody: false,
+    pathParams: ['schoolId'],
+    queryParams: ['page', 'pageSize', 'sort'],
+    errors: [E401_SESSION],
+    notes: ['Paginated: `data` + `meta`. Only `createdAt` can be sorted (default `-createdAt`); pageSize max 100.'],
+  },
+  registerParent: {
+    operationId: 'registerParent',
+    method: 'POST',
+    path: '/api/v1/parents',
+    summary: 'Register a parent and link them to the school',
+    auth: 'required',
+    openApiSecurity: BEARER,
+    authorization: SCHOOL_MANAGER_AUTH,
+    successStatus: 201,
+    noStore: false,
+    hasRequestBody: true,
+    errors: [{ status: 400, codes: ['VALIDATION_FAILED'] }, E401_SESSION],
+    notes: [
+      'Request `address` is a STRING "Governorate / Center or City / Village" (the frontend never sends `addressFields`).',
+      'The backend creates or reuses the login account; the response never contains a password.',
+      'Documented business codes: INVALID_PARENT_NAME, PARENT_ADDRESS_REQUIRED, INVALID_PARENT_ADDRESS, PARENT_ADDRESS_GOVERNORATE_NOT_FOUND, PARENT_ADDRESS_GOVERNORATE_INACTIVE, PARENT_ADDRESS_COUNTRY_MISMATCH, INVALID_PHONE_NUMBER, PARENT_IDENTITY_CONFLICT, PARENT_ACCOUNT_INACTIVE, PARENT_ORGANIZATION_CONFLICT, PARENT_ALREADY_LINKED_TO_SCHOOL.',
+    ],
+  },
+  getParent: {
+    operationId: 'getParent',
+    method: 'GET',
+    path: '/api/v1/parents/{id}',
+    summary: 'Get one parent',
+    auth: 'required',
+    openApiSecurity: BEARER,
+    authorization: SCHOOL_MANAGER_AUTH,
+    successStatus: 200,
+    noStore: false,
+    hasRequestBody: false,
+    pathParams: ['id'],
+    errors: [E401_SESSION],
+    notes: ['`id` is the Parent record id, not `userId`. The answer does not include students (see listParentStudents).'],
+  },
+  updateParentAddress: {
+    operationId: 'updateParentAddress',
+    method: 'PATCH',
+    path: '/api/v1/parents/{id}',
+    summary: "Correct a parent's address",
+    auth: 'required',
+    openApiSecurity: BEARER,
+    authorization: SCHOOL_MANAGER_AUTH,
+    successStatus: 200,
+    noStore: false,
+    hasRequestBody: true,
+    pathParams: ['id'],
+    errors: [{ status: 400, codes: ['VALIDATION_FAILED'] }, E401_SESSION],
+    notes: [
+      'Only the address can change; send `address` (string, max 600) and never `addressFields`.',
+      'Documented business code: PARENT_UPDATE_EMPTY (plus the address codes of registerParent).',
+    ],
+  },
+  listParentStudents: {
+    operationId: 'listParentStudents',
+    method: 'GET',
+    path: '/api/v1/students/parents/{parentId}',
+    summary: "List a parent's students",
+    auth: 'required',
+    openApiSecurity: BEARER,
+    authorization: SCHOOL_MANAGER_AUTH,
+    successStatus: 200,
+    noStore: false,
+    hasRequestBody: false,
+    pathParams: ['parentId'],
+    queryParams: ['page', 'pageSize', 'sort', 'filter[status]'],
+    errors: [E401_SESSION],
+    notes: [
+      '`parentId` is the Parent record id, not `userId`.',
+      'Sort: createdAt, joinDate, fullName. `filter[status]`: ACTIVE, INACTIVE, ARCHIVED (comma-separated for several).',
+      'The backend only returns students of schools the manager actively manages.',
+    ],
+  },
+  endParentSchoolLink: {
+    operationId: 'endParentSchoolLink',
+    method: 'DELETE',
+    path: '/api/v1/parents/{id}/schools/{schoolId}',
+    summary: "End a parent's link with one school",
+    auth: 'required',
+    openApiSecurity: BEARER,
+    authorization: SCHOOL_MANAGER_AUTH,
+    successStatus: 200,
+    noStore: false,
+    hasRequestBody: false,
+    pathParams: ['id', 'schoolId'],
+    errors: [E401_SESSION],
+    notes: [
+      'Ends the Parent-to-School link for THIS school only: it does not delete the parent or the account and keeps other schools and address history.',
+      'Documented business code: PARENT_HAS_STUDENTS_IN_SCHOOL (the link cannot end while the parent still has students here).',
     ],
   },
 };

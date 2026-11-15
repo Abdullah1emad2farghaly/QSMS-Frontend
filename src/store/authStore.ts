@@ -14,6 +14,8 @@ interface AuthState {
   roles: UserRole[];
   /** Active role of THIS session as reported by the backend (null = none chosen). */
   activeRole: UserRole | null;
+  /** The school the backend reported for this session (`data.schoolId`); null = none assigned/unknown. */
+  schoolId: string | null;
   mustChangePassword: boolean;
   /** Why the session ended without the user asking (shown once on the login screen). */
   endedReason: SessionEndReason;
@@ -22,8 +24,10 @@ interface AuthState {
     user: AuthUser;
     roles: UserRole[];
     activeRole: UserRole | null;
+    schoolId: string | null;
     mustChangePassword: boolean;
   }) => void;
+  setSchoolId: (schoolId: string | null) => void;
   setActiveRole: (role: UserRole | null) => void;
   setMustChangePassword: (value: boolean) => void;
   clear: (reason?: SessionEndReason) => void;
@@ -34,8 +38,8 @@ interface AuthState {
 const initial = () => {
   const stored = readStoredSession();
   return stored
-    ? { status: 'restoring' as AuthStatus, user: stored.user, roles: stored.roles, activeRole: stored.activeRole ?? null, mustChangePassword: stored.mustChangePassword }
-    : { status: 'anonymous' as AuthStatus, user: null, roles: [] as UserRole[], activeRole: null as UserRole | null, mustChangePassword: false };
+    ? { status: 'restoring' as AuthStatus, user: stored.user, roles: stored.roles, activeRole: stored.activeRole ?? null, schoolId: stored.schoolId ?? null, mustChangePassword: stored.mustChangePassword }
+    : { status: 'anonymous' as AuthStatus, user: null, roles: [] as UserRole[], activeRole: null as UserRole | null, schoolId: null as string | null, mustChangePassword: false };
 };
 
 /** Global authentication state. The refresh token is NOT here: it lives only in `tokenStorage`. */
@@ -44,10 +48,11 @@ export const useAuthStore = create<AuthState>()((set) => ({
   accessToken: null,
   endedReason: null,
   setSession: (session) => set({ ...session, status: 'authenticated', endedReason: null }),
+  setSchoolId: (schoolId) => set({ schoolId }),
   setActiveRole: (activeRole) => set({ activeRole }),
   setMustChangePassword: (mustChangePassword) => set({ mustChangePassword }),
   clear: (reason = null) =>
-    set({ status: 'anonymous', accessToken: null, user: null, roles: [], activeRole: null, mustChangePassword: false, endedReason: reason }),
+    set({ status: 'anonymous', accessToken: null, user: null, roles: [], activeRole: null, schoolId: null, mustChangePassword: false, endedReason: reason }),
   setStatus: (status) => set({ status }),
   dismissEndedReason: () => set({ endedReason: null }),
 }));

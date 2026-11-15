@@ -20,7 +20,16 @@ import type {
   RegisterOrganizationData,
   RegisterOrganizationRequest,
 } from './organizations';
+import type {
+  ParentSchoolLink,
+  Parent,
+  ParentsListQuery,
+  RegisterParentData,
+  RegisterParentRequest,
+  UpdateParentAddressRequest,
+} from './parents';
 import type { SubmitSchoolData, SubmitSchoolRequest } from './schools';
+import type { ParentStudent, ParentStudentsQuery } from './students';
 
 /**
  * Request/response contract of every documented endpoint, keyed by OpenAPI `operationId`.
@@ -45,6 +54,13 @@ export interface EndpointContractMap {
   getOrganizations: { body: undefined; query: OrganizationLookupQuery | undefined; pathParams: undefined; data: OrganizationOption[]; meta: PaginationMeta };
   registerOrganization: { body: RegisterOrganizationRequest; query: undefined; pathParams: undefined; data: RegisterOrganizationData; meta: undefined };
   submitSchool: { body: SubmitSchoolRequest; query: undefined; pathParams: undefined; data: SubmitSchoolData; meta: undefined };
+  // Parents module (SCHOOL_MANAGER)
+  listParents: { body: undefined; query: ParentsListQuery | undefined; pathParams: { schoolId: Uuid }; data: Parent[]; meta: PaginationMeta };
+  registerParent: { body: RegisterParentRequest; query: undefined; pathParams: undefined; data: RegisterParentData; meta: undefined };
+  getParent: { body: undefined; query: undefined; pathParams: { id: Uuid }; data: Parent; meta: undefined };
+  updateParentAddress: { body: UpdateParentAddressRequest; query: undefined; pathParams: { id: Uuid }; data: Parent; meta: undefined };
+  listParentStudents: { body: undefined; query: ParentStudentsQuery | undefined; pathParams: { parentId: Uuid }; data: ParentStudent[]; meta: PaginationMeta };
+  endParentSchoolLink: { body: undefined; query: undefined; pathParams: { id: Uuid; schoolId: Uuid }; data: ParentSchoolLink; meta: undefined };
 }
 
 export type OperationId = keyof EndpointContractMap;

@@ -1,5 +1,5 @@
 /**
- * Every error code documented for the 15 endpoints in the foundation contract.
+ * Every error code documented for the endpoints of the supplied contracts (foundation + parents).
  * Codes are stable and language-independent; the server may add more later, so
  * `ApiError.code` stays a plain string and `hasErrorCode()` narrows when needed.
  */
@@ -56,6 +56,18 @@ export const API_ERROR_CODES = [
   'SCHOOL_NAME_ALREADY_EXISTS',
   'SCHOOL_CONCURRENT_MODIFICATION',
   'SCHOOL_ORGANIZATION_INACTIVE',
+  // Parents (SCHOOL_MANAGER module)
+  'INVALID_PARENT_NAME',
+  'PARENT_ADDRESS_REQUIRED',
+  'PARENT_ADDRESS_GOVERNORATE_NOT_FOUND',
+  'PARENT_ADDRESS_GOVERNORATE_INACTIVE',
+  'PARENT_ADDRESS_COUNTRY_MISMATCH',
+  'PARENT_IDENTITY_CONFLICT',
+  'PARENT_ACCOUNT_INACTIVE',
+  'PARENT_ORGANIZATION_CONFLICT',
+  'PARENT_ALREADY_LINKED_TO_SCHOOL',
+  'PARENT_UPDATE_EMPTY',
+  'PARENT_HAS_STUDENTS_IN_SCHOOL',
 ] as const;
 
 export type ApiErrorCode = (typeof API_ERROR_CODES)[number];
